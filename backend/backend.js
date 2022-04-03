@@ -3,13 +3,13 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 
-app.use(express.static(path.join(__dirname, '..', 'termus')))
+app.use(express.static(path.join(__dirname, '..', 'backend')))
 
 app.get('/*.mp3', (req, res) => {
     var nota = (req.path.slice(1,).split('.mp3')[0]);
     if(['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(nota)){
         res.sendFile(`${nota}.mp3`, {
-            root: path.join(__dirname, '..', 'dist')
+            root: path.join(__dirname, '..', 'backend')
         });
         res.end();
     } else {
@@ -21,12 +21,13 @@ app.get('/*.mp3', (req, res) => {
 });
 
 app.get('/submit/*', (req, res) => {
+    //Os primeiros 8 caracteres são /submit/, %23 é o Unicode de #, usado em notas musicais
     let notas = req.path.slice(8,).replace('%23', '#').split('_');
-    console.log(notas)
+
     if(notas.length == 5){
         for(n of notas){
             if(!['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(n)){
-                console.log('Não inclui'+n)
+                // console.log('Não inclui'+n)
                 res.sendStatus(400).send({
                     error: 400,
                     message: 'Invalid musical note'
