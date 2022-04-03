@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termus</title>
+</head>
+<body id="body" autofocus onkeydown="printKey(event)">
+    <!-- <input/> -->
+    <audio id="invisible-player">
+    </audio>
+    <div style="display: flex; flex-direction: row;">
+        <div>
+            <img src="TERMUS.png" alt="Logomarca">
+        </div>
+        <div>
+            <button class="questionmark">
+                <img class="questionmarksize" src="questionmark.png" alt="Saiba mais">
+            </button>
+        </div>
+    </div>
+    <div>
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 60px; margin-left: -150px">
+            <tr>
+                <td><div class="square"></div></td>
+                <td><div class="square"></div></td>
+                <td><div class="square"></div></td>
+                <td><div class="square"></div></td>
+                <td><div class="square"></div></td>
+                <td><img class="play" src="play.png"></td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+    <div>
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -135px">
+            <tr>
+                <td onclick="playOnKeyPress('C');"><div class="square"><h3>C</h3></div></td>
+                <td><div class="square"><h3>C#</h3></div></td>
+                <td><div class="square"><h3>D</h3></div></td>
+                <td><div class="square"><h3>D#</h3></div></td>
+            </tr>
+        </table>
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 150px; margin-left: -200px">
+            <tr>
+                <td><div class="square"><h3>E</h3></div></td>
+                <td><div class="square"><h3>F</h3></div></td>
+                <td><div class="square"><h3>F#</h3></div></td>
+                <td><div class="square"><h3>G</h3></div></td>
+                <td><div class="square"><h3>G#</h3></div></td>
+            </tr>
+        </table>
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -65px">
+            <tr style="margin-left: -150px">
+                <td><div class="square"><h3>A</h3></div></td>
+                <td><div class="square"><h3>A#</h3></div></td>
+                <td><div class="square"><h3>B</h3></div></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
