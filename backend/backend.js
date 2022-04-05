@@ -5,6 +5,13 @@ const PORT = 3000
 
 app.use(express.static(path.join(__dirname, '..', 'backend')))
 
+app.get('/daily.mp3', (req, res) => {
+    res.sendFile(`daily.mp3`, {
+        root: path.join(__dirname, '..', 'backend')
+    });
+    res.end();
+});
+
 app.get('/*.mp3', (req, res) => {
     var nota = (req.path.slice(1,).split('.mp3')[0]);
     if(['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(nota)){
