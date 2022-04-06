@@ -46,3 +46,12 @@ h3 {
     width: 120px;
     border-radius: 10px;
 }
+
+.daily-music {
+    display: flex;
+    margin-left: 31%;
+}
+
+.daily-music-player {
+    
+}

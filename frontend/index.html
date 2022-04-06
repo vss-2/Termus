@@ -10,8 +10,9 @@
 </head>
 <body id="body" autofocus onkeydown="printKey(event)">
     <!-- <input/> -->
-    <audio id="invisible-player">
-    </audio>
+    <div id="div-invisible-player">
+        <audio id="invisible-player"></audio>
+    </div>
     <div style="display: flex; flex-direction: row;">
         <div>
             <img src="TERMUS.png" alt="Logomarca">
@@ -25,11 +26,11 @@
     <div>
         <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 60px; margin-left: -150px">
             <tr>
-                <td><div class="square"></div></td>
-                <td><div class="square"></div></td>
-                <td><div class="square"></div></td>
-                <td><div class="square"></div></td>
-                <td><div class="square"></div></td>
+                <td><div class="square" ><h3 id="top-note-1"></h3></div></td>
+                <td><div class="square" ><h3 id="top-note-2"></h3></div></td>
+                <td><div class="square" ><h3 id="top-note-3"></h3></div></td>
+                <td><div class="square" ><h3 id="top-note-4"></h3></div></td>
+                <td><div class="square" ><h3 id="top-note-5"></h3></div></td>
                 <td><img class="play" src="play.png"></td>
             </tr>
             <tr>
@@ -41,25 +42,25 @@
         <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -135px">
             <tr>
                 <td onclick="playOnKeyPress('C');"><div class="square"><h3>C</h3></div></td>
-                <td><div class="square"><h3>C#</h3></div></td>
-                <td><div class="square"><h3>D</h3></div></td>
-                <td><div class="square"><h3>D#</h3></div></td>
+                <td onclick="playOnKeyPress('C#');"><div class="square"><h3>C#</h3></div></td>
+                <td onclick="playOnKeyPress('D');"><div class="square"><h3>D</h3></div></td>
+                <td onclick="playOnKeyPress('D#');"><div class="square"><h3>D#</h3></div></td>
             </tr>
         </table>
         <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 150px; margin-left: -200px">
             <tr>
-                <td><div class="square"><h3>E</h3></div></td>
-                <td><div class="square"><h3>F</h3></div></td>
-                <td><div class="square"><h3>F#</h3></div></td>
-                <td><div class="square"><h3>G</h3></div></td>
-                <td><div class="square"><h3>G#</h3></div></td>
+                <td onclick="playOnKeyPress('E');"><div class="square"><h3>E</h3></div></td>
+                <td onclick="playOnKeyPress('F');"><div class="square"><h3>F</h3></div></td>
+                <td onclick="playOnKeyPress('F#');"><div class="square"><h3>F#</h3></div></td>
+                <td onclick="playOnKeyPress('G');"><div class="square"><h3>G</h3></div></td>
+                <td onclick="playOnKeyPress('G#');"><div class="square"><h3>G#</h3></div></td>
             </tr>
         </table>
         <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -65px">
             <tr style="margin-left: -150px">
-                <td><div class="square"><h3>A</h3></div></td>
-                <td><div class="square"><h3>A#</h3></div></td>
-                <td><div class="square"><h3>B</h3></div></td>
+                <td onclick="playOnKeyPress('A');"><div class="square"><h3>A</h3></div></td>
+                <td onclick="playOnKeyPress('A#');"><div class="square"><h3>A#</h3></div></td>
+                <td onclick="playOnKeyPress('B');"><div class="square"><h3>B</h3></div></td>
             </tr>
         </table>
     </div>
