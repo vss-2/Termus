@@ -27,6 +27,46 @@ const mapKey = {
     'D#'    : 12,
 }
 
+async function submit(){
+    let url = topNote.join('_').replaceAll('#', '%23');
+    fetch('http://localhost:8080/submit/'+url).then(res => {
+        return res.text();
+    })
+    .then(data => {
+        data = JSON.parse(data);
+        if(data["0"] == "exists"){
+            document.getElementById('div-top-note-0').style.background = 'yellow';
+        }
+        if(data['1'] == "exists"){
+            document.getElementById('div-top-note-1').style.background = 'yellow';
+        }
+        if(data['2'] == "exists"){
+            document.getElementById('div-top-note-2').style.background = 'yellow';
+        }
+        if(data['3'] == "exists"){
+            document.getElementById('div-top-note-3').style.background = 'yellow';
+        }
+        if(data['4'] == "exists"){
+            document.getElementById('div-top-note-4').style.background = 'yellow';
+        }
+        if(data['0'] == "correct"){
+            document.getElementById('div-top-note-0').style.background = 'green';
+        }
+        if(data['1'] == "correct"){
+            document.getElementById('div-top-note-1').style.background = 'green';
+        }
+        if(data['2'] == "correct"){
+            document.getElementById('div-top-note-2').style.background = 'green';
+        }
+        if(data['3'] == "correct"){
+            document.getElementById('div-top-note-3').style.background = 'green';
+        }
+        if(data['4'] == "correct"){
+            document.getElementById('div-top-note-4').style.background = 'green';
+        }
+    });
+}
+
 async function playOnKeyPress(key){
     let divPlayer = document.getElementById('div-invisible-player');
     let player = document.createElement('audio');
