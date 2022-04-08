@@ -1,4 +1,5 @@
 var topNote = ['','','','',''];
+var playerNumber = 0;
 
 function addTopNote(key){
     let nums = [1,2,3,4,5]
@@ -27,17 +28,11 @@ const mapKey = {
 }
 
 async function playOnKeyPress(key){
-    var player = document.getElementById('invisible-player');
-
-    while(player.childElementCount > 0){
-        let child = player.lastElementChild; 
-        while (child) {
-            player.removeChild(child);
-            child = player.lastElementChild;
-        }
-    }
-
+    let divPlayer = document.getElementById('div-invisible-player');
+    let player = document.createElement('audio');
+   
     let source = document.createElement('source');
+    source.id = `source-${playerNumber}`;
     let mapValue = mapKey[key];
 
     if(mapValue == 1)
@@ -65,18 +60,20 @@ async function playOnKeyPress(key){
     else if(mapValue == 12)
         source.src = `http://localhost:8080/${key}.mp3`
 
+    player.id = `player-${playerNumber}`;
     player.appendChild(source);
+    divPlayer.appendChild(player)
     player.play();
 
     addTopNote(key);
-    setTimeout(function(){
-        document.getElementById('div-invisible-player').innerHTML = '';
+    function deletePlayer(id){
         setTimeout(function(){
-            let newPlayerElement = document.createElement('audio');
-            newPlayerElement.id = 'invisible-player';
-            document.getElementById('div-invisible-player').appendChild(newPlayerElement);
-        }, 100);
-    }, 3000)
+            document.getElementById(`source-${id}`).remove();
+            document.getElementById(`player-${id}`).remove();
+        }, 3000)
+    }
+    deletePlayer(playerNumber);
+    playerNumber++;
 }
 
 function printKey(event){
