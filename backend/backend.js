@@ -1,9 +1,10 @@
 const path = require('path')
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const PORT = 3000
 
-app.use(express.static(path.join(__dirname, '..', 'backend')))
+app.use(cors({origin: '*'}), express.static(path.join(__dirname, '..', 'backend'), ))
 
 app.get('/daily.mp3', (req, res) => {
     res.sendFile(`daily.mp3`, {
@@ -29,8 +30,7 @@ app.get('/*.mp3', (req, res) => {
 
 app.get('/submit/*', (req, res) => {
     //Os primeiros 8 caracteres são /submit/, %23 é o Unicode de #, usado em notas musicais
-    let notas = req.path.slice(8,).replace('%23', '#').split('_');
-
+    let notas = req.path.slice(8,).replace(new RegExp('%23*', 'g'), '#').split('_');
     if(notas.length == 5){
         for(n of notas){
             if(!['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(n)){
@@ -91,7 +91,7 @@ app.get('/submit/*', (req, res) => {
 
 app.get('/favicon.ico', (req, res) => {
     res.sendFile(`favicon.ico`, {
-        root: path.join(__dirname, '..', 'dist')
+        root: path.join(__dirname, '..', 'backend')
     });
     res.end()
 });
