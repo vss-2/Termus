@@ -65,6 +65,26 @@ async function submit(){
             document.getElementById('div-top-note-4').style.background = 'green';
         }
     });
+
+    setTimeout(function(){
+        let newdiv = document.getElementById('table-notes');
+        let clonediv = newdiv.cloneNode(true);
+        for(let f = 0; f < 5; f++){
+            clonediv.children[0].children[0].children[f].children[0].id = 'played';
+            clonediv.children[0].children[0].children[f].children[0].children[0].id = 'played';
+            // remove o id das novas children
+        }
+        let tables = document.getElementById('tables');
+        clonediv.children[0].children[0].children[5].innerHTML = "";
+        for(let _ = 0; _ < 5; _++) {
+            document.getElementById(`div-top-note-${_}`).style.background = '#201131';
+            printKey({key: 'Backspace'});
+            // Remove letras após o play e cor das notas de cima
+        }
+        document.getElementById('table-notes').parentNode.insertBefore(clonediv, document.getElementById('table-notes').nextSibling);
+        // tables.appendChild(clonediv);
+
+    }, 250)
 }
 
 async function playOnKeyPress(key){
