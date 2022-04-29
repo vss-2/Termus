@@ -1,5 +1,44 @@
 var topNote = ['','','','',''];
 var playerNumber = 0;
+const gameID = fetch("http://localhost:8080/gameid");
+
+function cookieOnLoad(){
+    let notes = document.cookie;
+    if(notes.length == 0) return;
+    // console.log('Notas do cookie', notes.split('|'));
+    let topNote = [];
+    for(let l of notes){ topNote.push(l); }
+
+    let qtdJogadas = document.cookie.split('|');
+    // qtdJogadas = qtdJogadas.filter(function(value){return value.length == 0;});
+    console.log('qtdJogadas', qtdJogadas)
+    for(let q of qtdJogadas){
+        if(q == '') continue;
+        let url = topNote.join('_').replaceAll('#', '%23');
+        let newdiv = document.getElementById('table-notes');
+        let clonediv = newdiv.cloneNode(true);
+        for(let f = 0; f < 5; f++){
+            clonediv.children[0].children[0].children[f].children[0].id = 'played';
+            clonediv.children[0].children[0].children[f].children[0].children[0].id = 'played';
+            clonediv.children[0].children[0].children[f].children[0].style.background = q.split(',')[f+5];
+            clonediv.children[0].children[0].children[f].children[0].children[0].innerHTML = q.split(',')[f];
+            // remove o id das novas children
+        }
+        let tables = document.getElementById('tables');
+        clonediv.children[0].children[0].children[5].innerHTML = "";
+        for(let _ = 0; _ < 5; _++) {
+            document.getElementById(`div-top-note-${_}`).style.background = '#201131';
+            printKey({key: 'Backspace'});
+            // Remove letras após o play e cor das notas de cima
+        }
+        document.getElementById('table-notes').parentNode.insertBefore(clonediv, document.getElementById('table-notes').nextSibling);
+    }
+
+    // tables.appendChild(clonediv);
+
+}
+
+cookieOnLoad();
 
 function addTopNote(key){
     let nums = [1,2,3,4,5]
@@ -65,6 +104,19 @@ async function submit(){
             document.getElementById('div-top-note-4').style.background = 'green';
         }
     });
+    const saveNotes = topNote.toString()+',';
+    document.cookie += saveNotes;
+    setTimeout(function(){
+        document.cookie += [
+            String(document.getElementById('div-top-note-0').style.background).replace('rgb(32, 17, 49)', ''),
+            String(document.getElementById('div-top-note-1').style.background).replace('rgb(32, 17, 49)', ''),
+            String(document.getElementById('div-top-note-2').style.background).replace('rgb(32, 17, 49)', ''),
+            String(document.getElementById('div-top-note-3').style.background).replace('rgb(32, 17, 49)', ''),
+            String(document.getElementById('div-top-note-4').style.background).replace('rgb(32, 17, 49)', ''), '|'
+        ]
+    }, 200)
+    
+    // document.cookie = document.cookie.toString()+'|';
 
     setTimeout(function(){
         let newdiv = document.getElementById('table-notes');
@@ -154,6 +206,19 @@ body.addEventListener(onkeydown,
         console.log(event)
     }
 );
+
+function saveSessionCookie(){
+
+}
+
+function resetSessionCookie(){
+    let browserGameID = document.getElementById('cookies');
+    if(String(browserGameID).split('gameid').length > 1){
+        if(gameID != browserGameID){
+            document.cookie = String(browserGameID).split('gameid:')[1].split(';')[0];
+        }
+    }
+}
 
 // 'E',
 // 'F',
