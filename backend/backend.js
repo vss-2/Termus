@@ -96,4 +96,11 @@ app.get('/favicon.ico', (req, res) => {
     res.end()
 });
 
+app.get('/gameid', (req, res) => {
+    let date = new Date;
+    date = date.getUTCMonth()+1 > 10 ? date.getUTCMonth()+1+''+date.getUTCDate() : '0'+date.getUTCMonth()+date.getUTCDate();
+    res.send(String(date));
+    res.end();
+});
+
 app.listen(8080, () => console.log('Server started on port 8080'))
