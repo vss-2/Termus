@@ -103,6 +103,16 @@ async function submit(){
         if(data['4'] == "correct"){
             document.getElementById('div-top-note-4').style.background = 'green';
         }
+
+        if(data['0'] == "correct" && data['1'] == "correct" && data['2'] == "correct" && data['3'] == "correct" && data['4'] == "correct"){
+            document.getElementById('canvas').style.visibility = "visible";
+            document.getElementById('modal-congrats').style = visibility = "visible";
+            let congratsText = document.createElement('h3');
+            congratsText.style.color = "white";
+            congratsText.innerText = "Parabéns você concluiu em: "+ Number(((document.getElementsByTagName('tr').length - 5)/2)+1) + " tentativa(s)";
+            document.getElementById('modal-congrats').appendChild(congratsText);
+        }
+
     });
     const saveNotes = topNote.toString()+',';
     document.cookie += saveNotes;

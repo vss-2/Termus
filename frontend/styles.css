@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 .questionmark {
@@ -29,7 +30,7 @@ body {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 h3 {
@@ -38,6 +39,7 @@ h3 {
     justify-content: center;
     margin-block-start: 1.5em;
     font-size: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .play {
@@ -46,6 +48,22 @@ h3 {
     height: 120px;
     width: 120px;
     border-radius: 10px;
+}
+
+canvas {
+    margin-top: -10px;
+    position: absolute;
+    width: 100%;
+    height: 101%;
+    background-color: transparent; 
+    color: transparent; 
+    z-index: -100; 
+    opacity: 25%;
+    visibility: hidden;
+}
+
+div.modal-congrats {
+    visibility: hidden;
 }
 
 .daily-music {
