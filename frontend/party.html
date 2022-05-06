@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function selectMode(mode){
+            if(mode=='competitivo'){
+                document.getElementById('competitivo').style.backgroundColor = "#bd3eba";
+                document.getElementById('cooperativo').style.backgroundColor = "#201131";
+            } else if (mode=='cooperativo'){
+                document.getElementById('cooperativo').style.backgroundColor = "#bd3eba";
+                document.getElementById('competitivo').style.backgroundColor = "#201131";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <img src="TERMUS.png" alt="Logomarca">
+    </div>
+    <br><br><br><br><br><br><br><br>
+    <div style="display: flex; flex-direction: row;">
+        <table style="border-spacing: 250px; -webkit-border-vertical-spacing: 0px; margin-left: -130px">
+            <tr style="margin-left: -550px">
+                <td onclick="selectMode('competitivo')">
+                    <div class="square3" id="competitivo">
+                        <h3>Competitivo</h3>
+                    </div>
+                </td>
+                <td onclick="selectMode('cooperativo')">
+                    <div class="square3" id="cooperativo">
+                        <h3>Cooperativo</h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div style="display: flex; flex-direction: row;">
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -300px">
+            <tr style="margin-left: 0px">
+                <td>
+                    <div class="square2" style>
+                        <h3>Criar sala</h3>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
