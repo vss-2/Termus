@@ -95,3 +95,19 @@ div.modal-congrats {
 .daily-music-player {
     
 }
+
+input.nick {
+    font-size: 28px;
+    width: 450px;
+    margin-left: 70px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+a {
+    margin-left: 350px;
+    font-size: 28px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white
+}

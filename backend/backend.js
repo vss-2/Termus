@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors');
 const app = express()
 const PORT = 3000
+const uuidv4 = require('uuid');
 
 app.use(cors({origin: '*'}), express.static(path.join(__dirname, '..', 'backend'), ))
 
@@ -102,5 +103,14 @@ app.get('/gameid', (req, res) => {
     res.send(String(date));
     res.end();
 });
+
+app.post('/party', (req, res) => {
+    res.send({id: uuidv4.v4()});
+})
+
+app.get('/party/id/', (req, res) => {
+    // Buscar no banco retornar página igual ao index
+    // só que com requests alterados com o ID da partida
+})
 
 app.listen(8080, () => console.log('Server started on port 8080'))

@@ -14,6 +14,26 @@
                 document.getElementById('competitivo').style.backgroundColor = "#201131";
             }
         }
+        async function generateRoom(){
+            fetch('http://localhost:8080/party', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(document.getElementById('nickname').innerText)
+            }).then(response => response.json()).then( data => {
+                idTd = document.createElement('td')
+                // idDiv = document.createElement('div')
+                // idDiv.classList.add('square2')
+                idRoom = document.createElement('a')
+                idRoom.href = 'http://localhost:5500/frontend/party/id' + data.id;
+                idRoom.innerText = 'Acessar sua sala'
+                // idDiv.appendChild(idRoom)
+                idTd.appendChild(idRoom)
+                document.getElementById('createRoom').innerHTML = ""
+                document.getElementById('createRoom').appendChild(idTd)
+            })
+        }
     </script>
 </head>
 
@@ -39,12 +59,14 @@
         </table>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div style="display: flex; flex-direction: row;">
-        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -300px">
-            <tr style="margin-left: 0px">
-                <td>
-                    <div class="square2" style>
-                        <h3>Criar sala</h3>
+        <input id="nickname" class="nick" placeholder="      Seu nick para esta partida">
+    <br><br><br><br><br><br><br><br>
+    <div style="display: flex; flex-direction: row;" >
+        <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -300px" >
+            <tr style="margin-left: 0px" >
+                <td id="createRoom">
+                    <div class="square2">
+                        <h3 onclick="generateRoom()">Criar sala</h3>
                     </div>
                 </td>
             </tr>
