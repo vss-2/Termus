@@ -4,6 +4,17 @@ const cors = require('cors');
 const app = express()
 const PORT = 3000
 const uuidv4 = require('uuid');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database(':memory:');
+const hash = require('object-hash');
+const { randomInt } = require('crypto');
+
+db.serialize(() => {
+    db.run('CREATE TABLE party (gameid TEXT, player TEXT, playerHash TEXT, tries INTEGER)');
+    // const statement = db.prepare('INSERT INTO party VALUES (?, ?, ?, ?)');
+    // statement.run('TESTE GAMEID', 'TESTE PLAYER', 'TESTE HASH NAME', 0);
+    // statement.finalize();
+})
 
 app.use(cors({origin: '*'}), express.static(path.join(__dirname, '..', 'backend'), ));
 app.use(express.json());
@@ -109,8 +120,30 @@ app.get('/gameid', (req, res) => {
     res.end();
 });
 
+app.post('/newUser', (req, res) => {
+    let nameHash = hash(req.body.userid);
+    const statement = db.prepare('INSERT INTO party VALUES (?, ?, ?, ?)');
+    console.log('newUser', req.body.gameid, req.body.userid, nameHash, 0);
+    statement.run(req.body.gameid, req.body.userid, nameHash, 0);
+    statement.finalize();
+    let urlContent = 'http://localhost:5500/frontend/index.html?gameid=' + req.body.gameid +'&code=' + nameHash;
+    res.send({url: urlContent});
+});
+
+app.post('/getRanking', (req, res) => {
+    let gameid = req.body.gameid;
+    let ranking = db.all('SELECT player, tries FROM party', (err, rows) => {
+        res.send({ranking: rows});
+    });
+})
+
 app.post('/party', (req, res) => {
-    res.send({id: uuidv4.v4()});
+    let generatedID = uuidv4.v4();
+    let nameHash = hash(req.body.creatorNick);
+    const statement = db.prepare('INSERT INTO party VALUES (?, ?, ?, ?)');
+    statement.run(generatedID,  req.body.creatorNick, nameHash, 0);
+    statement.finalize();
+    res.send({id: generatedID, code: nameHash});
 })
 
 app.get('/party/id/', (req, res) => {
