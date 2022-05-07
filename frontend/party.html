@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="http://localhost:8080/favicon.ico">
     <script>
+        var data2 = undefined;
         function selectMode(mode){
             if(mode=='competitivo'){
                 document.getElementById('competitivo').style.backgroundColor = "#bd3eba";
@@ -20,16 +22,24 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(document.getElementById('nickname').innerText)
+                body: JSON.stringify({creatorNick: document.getElementById('nickname').innerText})
             }).then(response => response.json()).then( data => {
                 idTd = document.createElement('td')
-                // idDiv = document.createElement('div')
-                // idDiv.classList.add('square2')
+                idImg = document.createElement('img')
+                idImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABD0lEQVRIie2VwWrCQBCGJ+qpvkJzaiVvlffTWnruwdeo4CuYFiN6bL8eMoFtXMdAdoRCflgIZNlvdpJ/fpFR/1VADqyBo643oLgH9JNLfQG5J3gdgbZaeYKPBrgO904SQqc3ziMpGJgCpYhsRWRubH0fymqBM6AEdkE7d8A+0uYKePQClvruGXgBal3LXlD++rAGXvUwEzj0Ntd8WLkAA7Dlw/TAAGz58JwSmMzHQ8EbY++DiHx4tbqgGehd7V1/LoXnwIrGSgd9fsLTTj0LuzVAFjTe98ljo4Aq8qnS5zEaEp0CYvLJYy3gZIB98jjLsm8R+bFqcwGrrDmQJo9j4vocGJ7HPeDhHOifx6O89AtIgeIIZghq8AAAAABJRU5ErkJggg=="
+                data2 = 'http://localhost:5500/frontend/index.html?gameid=' + data.id;
+                idImg.onclick = function(event, data2) {
+                    console.log(data)
+                    navigator.clipboard.writeText('http://localhost:5500/frontend/index.html?gameid=' + data.id)
+                        .then(() => alert('Link da sala copiado!'))
+                        .catch(() => alert ('Houve um erro ao gerar o link, tente novamente mais tarde!'))
+                }
+                idImg.id = "sharebutton"
                 idRoom = document.createElement('a')
-                idRoom.href = 'http://localhost:5500/frontend/party/id' + data.id;
+                idRoom.href = 'http://localhost:5500/frontend/index.html?gameid=' + data.id;
                 idRoom.innerText = 'Acessar sua sala'
-                // idDiv.appendChild(idRoom)
                 idTd.appendChild(idRoom)
+                idTd.appendChild(idImg)
                 document.getElementById('createRoom').innerHTML = ""
                 document.getElementById('createRoom').appendChild(idTd)
             })
@@ -65,13 +75,14 @@
         <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -300px" >
             <tr style="margin-left: 0px" >
                 <td id="createRoom">
-                    <div class="square2">
+                    <div onclick="generateRoom()" class="square2">
                         <h3 onclick="generateRoom()">Criar sala</h3>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
+    <!-- <a style="font-size: 10px" href="https://icons8.com/icon/CEuLWmn45H5H/share">Share icon by Icons8</a> -->
 </body>
 
 </html>

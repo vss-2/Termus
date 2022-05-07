@@ -5,7 +5,8 @@ const app = express()
 const PORT = 3000
 const uuidv4 = require('uuid');
 
-app.use(cors({origin: '*'}), express.static(path.join(__dirname, '..', 'backend'), ))
+app.use(cors({origin: '*'}), express.static(path.join(__dirname, '..', 'backend'), ));
+app.use(express.json());
 
 app.get('/daily.mp3', (req, res) => {
     res.sendFile(`daily.mp3`, {
@@ -29,7 +30,11 @@ app.get('/*.mp3', (req, res) => {
     }
 });
 
-app.get('/submit/*', (req, res) => {
+app.post('/submit/*', (req, res) => {
+    if(req.body.id){
+        // Incrementa tabela de tentativa
+        // busca no banco resposta certa (faz a mesma coisa que a parte de baixo)
+    }
     //Os primeiros 8 caracteres são /submit/, %23 é o Unicode de #, usado em notas musicais
     let notas = req.path.slice(8,).replace(new RegExp('%23*', 'g'), '#').split('_');
     if(notas.length == 5){
