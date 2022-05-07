@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="http://localhost:8080/favicon.ico">
+    <script>
+        let gameID = window.location.href.split('?gameid=')[1];
+        async function newUser(){
+            let userID = document.getElementById('nickname').value
+            fetch('http://localhost:8080/newUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ gameid: gameID, userid: userID })
+            })
+            .then(res => res.json())
+            .then(res => {
+                window.location.href = res.url;
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <img src="TERMUS.png" alt="Logomarca">
+    </div>
+    <br><br><br><br><br><br><br><br>
+    <input id="nickname" class="nick" placeholder="      Seu nick para esta partida">
+    <br><br><br><br><br><br><br><br>
+    <table style="border-spacing: 150px; -webkit-border-vertical-spacing: 0px; margin-left: -300px">
+        <tr>
+            <td>
+                <div class="square2" onclick="newUser()">
+                    <h3>
+                        Jogar
+                    </h3>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <div id='ranking'>
+        </div>
+    </table>
+</body>
+
+</html>

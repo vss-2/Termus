@@ -230,6 +230,31 @@ function resetSessionCookie(){
     }
 }
 
+async function getRanking(){
+    let customized = window.location.href.split('?gameid=')[1];
+    if(customized){
+        fetch('http://localhost:8080/getRanking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({gameid: gameID})
+        })
+        .then(res => res.json())
+        .then(res => {
+            let divRanking = document.getElementById('ranking');
+            // console.log(res);
+            for(let r = 0; r < res.ranking.length; r++){
+                let playerAndScore = document.createElement('h3')
+                playerAndScore.innerText = res.ranking[r].player + ': ' + res.ranking[r].tries;
+                divRanking.appendChild(playerAndScore);
+            }
+        });
+    }
+}
+
+getRanking();
+
 // 'E',
 // 'F',
 // 'F#',
