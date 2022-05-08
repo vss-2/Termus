@@ -158,29 +158,29 @@ async function playOnKeyPress(key){
     let mapValue = mapKey[key];
 
     if(mapValue == 1)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 2)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 3)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 4)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 5)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 6)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 7)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 8)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 9)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 10)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 11)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
     else if(mapValue == 12)
-        source.src = `http://localhost:8080/${key}.mp3`
+        source.src = `http://localhost:8080/${key}.m4a`
 
     player.id = `player-${playerNumber}`;
     player.appendChild(source);

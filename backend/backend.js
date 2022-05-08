@@ -26,10 +26,10 @@ app.get('/daily.mp3', (req, res) => {
     res.end();
 });
 
-app.get('/*.mp3', (req, res) => {
-    var nota = (req.path.slice(1,).split('.mp3')[0]);
+app.get('/*.m4a', (req, res) => {
+    var nota = (req.path.slice(1,).split('.m4a')[0]);
     if(['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(nota)){
-        res.sendFile(`${nota}.mp3`, {
+        res.sendFile(`${nota}.m4a`, {
             root: path.join(__dirname, '..', 'backend')
         });
         res.end();
