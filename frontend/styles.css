@@ -62,6 +62,22 @@ h3 {
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+h3.ranking {
+    color: #D4AF37 !important;
+}
+
+h3.gold {
+    color: #ffd700
+}
+
+h3.silver {
+    color: #c0c0c0
+}
+
+h3.bronze {
+    color: #cd7f32
+}
+
 .play {
     cursor: pointer;
     position: absolute;

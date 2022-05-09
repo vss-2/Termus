@@ -36,7 +36,8 @@
                 }
                 idImg.id = "sharebutton"
                 idRoom = document.createElement('a')
-                idRoom.href = 'http://localhost:5500/frontend/index.html?gameid=' + data.id;
+                console.log('data', data, data2)
+                idRoom.href = 'http://localhost:5500/frontend/index.html?gameid=' + data.id + '&code=' + data.code;
                 idRoom.innerText = 'Acessar sua sala'
                 idTd.appendChild(idRoom)
                 idTd.appendChild(idImg)

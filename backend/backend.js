@@ -42,10 +42,19 @@ app.get('/*.m4a', (req, res) => {
 });
 
 app.post('/submit/*', (req, res) => {
-    if(req.body.id){
-        // Incrementa tabela de tentativa
-        // busca no banco resposta certa (faz a mesma coisa que a parte de baixo)
+    console.log(req.body)
+    if(req.body.gameid && req.body.code){
+        let update = db.all('SELECT gameid, playerHash, tries FROM party', (err, rows) => {
+            console.log(rows)
+            let selected = rows.filter((x) => {
+                if(req.body.gameid == x.gameid && req.body.code == x.playerHash){
+                    db.run("UPDATE party SET tries = ? WHERE playerHash = ?", x.tries+1, x.playerHash);
+                    console.log('update')
+                }
+            });
+        });
     }
+    res.sendStatus(200);
 });
 
 app.get('/submit/*', (req, res) => {
@@ -136,8 +145,14 @@ app.post('/newUser', (req, res) => {
 
 app.post('/getRanking', (req, res) => {
     let gameid = req.body.gameid;
-    let ranking = db.all('SELECT player, tries FROM party', (err, rows) => {
-        res.send({ranking: rows});
+    let ranking = db.all('SELECT gameid, player, tries FROM party', (err, rows) => {
+        let selected = rows.filter((x) => {
+            // console.log(x, gameid)
+            if(x.gameid == gameid){ return true } else { return false }
+        });
+        selected.sort((a,b) => a.tries < b.tries)
+        // console.log(selected, gameid)
+        res.send({ranking: selected});
     });
 })
 

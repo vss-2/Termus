@@ -74,19 +74,19 @@ async function submit(){
     .then(data => {
         data = JSON.parse(data);
         if(data["0"] == "exists"){
-            document.getElementById('div-top-note-0').style.background = 'yellow';
+            document.getElementById('div-top-note-0').style.background = '#FFBA01';
         }
         if(data['1'] == "exists"){
-            document.getElementById('div-top-note-1').style.background = 'yellow';
+            document.getElementById('div-top-note-1').style.background = '#FFBA01';
         }
         if(data['2'] == "exists"){
-            document.getElementById('div-top-note-2').style.background = 'yellow';
+            document.getElementById('div-top-note-2').style.background = '#FFBA01';
         }
         if(data['3'] == "exists"){
-            document.getElementById('div-top-note-3').style.background = 'yellow';
+            document.getElementById('div-top-note-3').style.background = '#FFBA01';
         }
         if(data['4'] == "exists"){
-            document.getElementById('div-top-note-4').style.background = 'yellow';
+            document.getElementById('div-top-note-4').style.background = '#FFBA01';
         }
         if(data['0'] == "correct"){
             document.getElementById('div-top-note-0').style.background = 'green';
@@ -127,6 +127,21 @@ async function submit(){
     }, 200)
     
     // document.cookie = document.cookie.toString()+'|';
+
+    let isCustomized = [window.location.href.split('?gameid='), window.location.href.split('&code=')]
+    if(isCustomized[0].length > 1){
+        isCustomized[0] = window.location.href.split('?gameid=')[1].split('&')[0]
+        isCustomized[1] = window.location.href.split('&code=')[1];
+        fetch('http://localhost:8080/submit/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({gameid: isCustomized[0], code: isCustomized[1]})
+        }).then(res => {
+            return res.text();
+        });
+    }
 
     setTimeout(function(){
         let newdiv = document.getElementById('table-notes');
@@ -244,15 +259,22 @@ async function getRanking(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({gameid: gameID})
+            body: JSON.stringify({gameid: customized.split('&')[0]})
         })
         .then(res => res.json())
         .then(res => {
             let divRanking = document.getElementById('ranking');
             // console.log(res);
+            let ranking = document.createElement('h3')
+            ranking.classList.add('ranking')
+            ranking.innerText = '🏆 Ranking 🏆';
+            divRanking.appendChild(ranking)
             for(let r = 0; r < res.ranking.length; r++){
                 let playerAndScore = document.createElement('h3')
-                playerAndScore.innerText = res.ranking[r].player + ': ' + res.ranking[r].tries;
+                playerAndScore.innerText = r+1 + '. ' + res.ranking[r].player + ': ' + res.ranking[r].tries;
+                if(r == 0){ playerAndScore.classList.add('gold') }
+                if(r == 1){ playerAndScore.classList.add('silver') }
+                if(r == 2){ playerAndScore.classList.add('bronze') }
                 divRanking.appendChild(playerAndScore);
             }
         });
