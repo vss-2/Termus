@@ -46,6 +46,10 @@ app.post('/submit/*', (req, res) => {
         // Incrementa tabela de tentativa
         // busca no banco resposta certa (faz a mesma coisa que a parte de baixo)
     }
+});
+
+app.get('/submit/*', (req, res) => {
+
     //Os primeiros 8 caracteres são /submit/, %23 é o Unicode de #, usado em notas musicais
     let notas = req.path.slice(8,).replace(new RegExp('%23*', 'g'), '#').split('_');
     if(notas.length == 5){
@@ -59,7 +63,7 @@ app.post('/submit/*', (req, res) => {
             }
         }
     }
-    let correct_combination = ['C', 'D', 'G#', 'F', 'B'];
+    let correct_combination = ['G', 'A', 'B', 'D', 'D'];
 
     let exists = {
         E: 0,
