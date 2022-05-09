@@ -152,10 +152,14 @@ async function submit(){
 async function playOnKeyPress(key){
     let divPlayer = document.getElementById('div-invisible-player');
     let player = document.createElement('audio');
-   
+
+    
     let source = document.createElement('source');
     source.id = `source-${playerNumber}`;
     let mapValue = mapKey[key];
+    
+    key = key.replace('#', '%23');
+    console.log(key)
 
     if(mapValue == 1)
         source.src = `http://localhost:8080/${key}.m4a`
@@ -186,6 +190,8 @@ async function playOnKeyPress(key){
     player.appendChild(source);
     divPlayer.appendChild(player)
     player.play();
+
+    key = key.replace('%23', '#');
 
     addTopNote(key);
     function deletePlayer(id){
