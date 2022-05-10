@@ -174,7 +174,7 @@ async function playOnKeyPress(key){
     let mapValue = mapKey[key];
     
     key = key.replace('#', '%23');
-    console.log(key)
+    // console.log(key)
 
     if(mapValue == 1)
         source.src = `http://localhost:8080/${key}.m4a`
@@ -279,6 +279,24 @@ async function getRanking(){
             }
         });
     }
+}
+
+async function playDaily(){
+    let player = document.createElement('audio');
+    player.id = 'player-daily';
+
+    let source = document.createElement('source');
+    source.id = 'source-daily';
+    source.src = 'http://localhost:8080/playDaily.m4a';
+
+    player.appendChild(source);
+    document.getElementById('daily').appendChild(player);
+    player.play();
+
+    setTimeout(function(){
+        document.getElementById(`source-daily`).remove();
+        document.getElementById(`player-daily`).remove();
+    }, 5001)
 }
 
 getRanking();
