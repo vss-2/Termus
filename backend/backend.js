@@ -65,10 +65,10 @@ app.get('/submit/*', (req, res) => {
         for(n of notas){
             if(!['E','F','F#','G','G#','A','A#','B','C','C#','D','D#'].includes(n)){
                 // console.log('Não inclui'+n)
-                res.sendStatus(400).send({
+                res.send({
                     error: 400,
                     message: 'Invalid musical note'
-                })
+                }).sendStatus(400)
             }
         }
     }

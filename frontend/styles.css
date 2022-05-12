@@ -145,3 +145,14 @@ a {
 img#sharebutton {
     cursor: pointer;
 }
+
+::-webkit-media-controls-enclosure {
+    background-color: white;
+    color: purple;
+}
+
+audio::-webkit-media-controls-play-button {
+    /* background-color: #BD3EBA; */
+    background-color: #201131;
+    border-radius: 20px;
+}

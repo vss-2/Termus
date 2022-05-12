@@ -301,6 +301,10 @@ async function playDaily(){
 
 getRanking();
 
+async function playDaily(){
+    document.getElementById('daily').play()
+}
+
 // 'E',
 // 'F',
 // 'F#',

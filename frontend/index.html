@@ -146,9 +146,10 @@
             </button>
         </div>
     </div>
-    <div class="daily" class="round" onclick="playDaily()">
-        <h3 style="transform: scale(75%);">🎶</h3>
-    </div>
+        <audio id="daily" controls controlsList="nodownload noplaybackrate" style="display: none;">
+            <source src="http://localhost:8080/C.m4a"> </source>
+        </audio>
+        <img src="play.png" style="transform: scale(60%)" onclick="playDaily()">
     <canvas id="canvas"></canvas>
     <div id="modal-congrats">
         <!-- <h3>Parabéns, você concluiu em:</h3> -->
@@ -162,7 +163,7 @@
                 <td><div class="square" id="div-top-note-2"><h3 id="top-note-3"></h3></div></td>
                 <td><div class="square" id="div-top-note-3"><h3 id="top-note-4"></h3></div></td>
                 <td><div class="square" id="div-top-note-4"><h3 id="top-note-5"></h3></div></td>
-                <td><img class="play" onclick="submit()" src="play.svg"></td>
+                <td><img class="play" onclick="submit()" src="play.svg" style="transform: scale(1.75)"></td>
             </tr>
             <tr>
             </tr>
